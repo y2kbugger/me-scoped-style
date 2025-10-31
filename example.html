@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Scoped Inline CSS Demo</title>
@@ -25,66 +26,45 @@
 <body>
   <h1>Scoped Inline CSS Demo</h1>
   <p>
-    Each <code>&lt;style me-scoped&gt;</code> block applies only to its parent element.  
-    The parent must have a unique <code>id</code>.  
-    The script automatically wraps each block in <code>@scope (#id)</code>  
+    Each <code>&lt;style me-scoped&gt;</code> block applies only to its parent element.
+    The parent must have a unique <code>id</code>.
+    The script automatically wraps each block in <code>@scope (#id)</code>
     and replaces <code>me</code> with <code>:scope</code>.
   </p>
 
   <!-- Example 1 -->
-  <section id="overview">
+  <section id="container">
     <style me-scoped>
-      me {
-        background: #e0f7fa;
-
-        h2 {
-          color: #00796b;
-        }
-
-        p {
-          color: #004d40;
-        }
-
+      me { background: #e0f7fa; }
+      h2 { color: #00796b; font-weight: 900; }
+      p { color: #004d40; }
+      .details {
+        background: #6e39d8;
+        color:#e0f7fa;
+        padding: 0.5rem;
         .highlight {
-          background: #b2dfdb;
-        }
-
-        .details {
-          background: #fff9c4;
-
-          p {
-            color: #795548;
-          }
+          background: #e382ce;
         }
       }
     </style>
 
     <h2>Overview</h2>
-    <p>This section’s styles are local to <code>#overview</code>.</p>
+    <p>This section’s styles are local to <code>#container</code>.</p>
     <div class="details">
-      <p>Nested details inherit scoped colors.</p>
-      <p class="highlight">The highlight color stays within this section.</p>
+      <p>The <span class="highlight">highlight</span> color stays within this section.</p>
     </div>
-  </section>
 
-  <!-- Example 2 -->
-  <section id="footer">
-    <style me-scoped>
-      me {
-        background: #f0f4c3;
+    <footer id="footer">
+      <style me-scoped>
+        me { background: #f0f4c3; padding: 1rem; }
+        h2 { color: #33691e; }
+        p { color: #1b5e20; }
+      </style>
 
-        h2 {
-          color: #33691e;
-        }
-
-        p {
-          color: #1b5e20;
-        }
-      }
-    </style>
-
-    <h2>Footer</h2>
-    <p>This section’s styles are local to <code>#footer</code> and do not affect others.</p>
+      <h2>Footer</h2>
+      <p>This section’s styles are local to <code>#footer</code> and do not affect others.</p>
+    </footer>
   </section>
 </body>
+
 </html>
