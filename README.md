@@ -1,15 +1,17 @@
-# 🌘 CSS Scope Inline
+# Me Scoped Style
 
 A tiny script that scopes your inline `<style>` blocks using modern CSS `@scope`.
+
+Basically just saves you from writing the `@scope` boilerplate by hand.
 
 ## Why does this exist?
 
 * You want to co-locate your styles with your markup for ⚡️ [Locality of Behavior (LoB)](https://htmx.org/essays/locality-of-behaviour/)
-* You want all CSS features: [Nesting](https://caniuse.com/css-nesting), animations, `@keyframes`, etc.
+* You want all CSS features: [Nesting](https://caniuse.com/css-nesting), animations, etc.
 * Only 17 lines. No build step. No dependencies.
 * Pairs well with [htmx](https://htmx.org)
 
-## 👁️ How does it look?
+## How does it look?
 ```html
 <section id="container">
     <style me-scoped>
@@ -21,7 +23,7 @@ A tiny script that scopes your inline `<style>` blocks using modern CSS `@scope`
 ```
 See the [Live Example](https://y2kbugger.github.io/css-scope-inline/example.html)! Then [view source](https://github.com/y2kbugger/css-scope-inline/blob/main/example.html).
 
-## 🌘 How does it work?
+## How does it work?
 
 This uses `MutationObserver` to watch for `<style me-scoped>` tags. When found:
 1. Gets the parent element's `id` (required!)
@@ -30,7 +32,9 @@ This uses `MutationObserver` to watch for `<style me-scoped>` tags. When found:
 
 Uses modern CSS `@scope` for true style isolation. No flashing or popping.
 
-## 🎁 Install
+Note: Enclosed styles don't need the `me` prefix - they're automatically scoped!
+
+## Install
 
 Add this to your `<head>`:
 
@@ -40,13 +44,13 @@ Add this to your `<head>`:
 
 Or [📥 download script.js](https://raw.githubusercontent.com/y2kbugger/css-scope-inline/main/script.js) and host it yourself.
 
-## 📋 Requirements
+## Requirements
 
-* Parent element **must have an `id`** attribute
+* Parent element **must have an `id`** attribute - not because the implementation requires it (it could be changed), but because it encourages you to write CSS at a chunkier level on named containers, rather than on elements like `<li>` that get looped over 1000 times
 * Add `me-scoped` attribute to your `<style>` tag
 * Use `me` to reference the scoped container (gets replaced with `:scope`)
 
-## 🎨 Example
+## Example
 
 ```html
 <section id="container">
@@ -72,9 +76,11 @@ Or [📥 download script.js](https://raw.githubusercontent.com/y2kbugger/css-sco
 </section>
 ```
 
-## 🔎 Browser Support
+## Browser Support
 
-Requires browsers with [`@scope` support](https://caniuse.com/css-cascade-scope):
-* Chrome/Edge 118+
-* Safari 17.4+
-* Firefox 128+
+Requires browsers with [`@scope` support](https://caniuse.com/css-cascade-scope) (e.g., Chrome 118+)
+
+## Workflow Tips
+
+* Flat, single-line selectors can be very concise. See the examples.
+* Use VSCode for autocomplete styles with [Emmet](https://code.visualstudio.com/docs/editor/emmet)
